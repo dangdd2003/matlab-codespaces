@@ -15,7 +15,7 @@
     "ghcr.io/mathworks/devcontainer-features/matlab": {
       // For more options, See: https://github.com/mathworks/devcontainer-features/tree/main/src/matlab
       "release": "r2025b",
-      "products": "MATLAB Symbolic_Math_Toolbox Simulink",
+      "products": "MATLAB Parallel_Computing_Toolbox Deep_Learning_Toolbox Optimization_Toolbox Signal_Processing_Toolbox Image_Processing_Toolbox Computer_Vision_Toolbox Symbolic_Math_Toolbox Simulink",
       "installMatlabProxy": "true",
       "startInDesktop": "true",
       "installJupyterMatlabProxy": true,

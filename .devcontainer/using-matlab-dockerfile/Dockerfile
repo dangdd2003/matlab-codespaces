@@ -15,7 +15,7 @@
 ARG MATLAB_RELEASE=R2025b
 
 # Specify the list of products to install into MATLAB.
-ARG MATLAB_PRODUCT_LIST="MATLAB"
+ARG MATLAB_PRODUCT_LIST="MATLAB Parallel_Computing_Toolbox Deep_Learning_Toolbox Optimization_Toolbox Signal_Processing_Toolbox Image_Processing_Toolbox Computer_Vision_Toolbox"
 
 # Specify MATLAB Install Location.
 ARG MATLAB_INSTALL_LOCATION="/opt/matlab/${MATLAB_RELEASE}"
