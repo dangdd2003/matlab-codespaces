@@ -1,0 +1,73 @@
+{
+  /* This DevContainer configuration demonstrates
+      1. Building image using Dev Container Features
+      2. Installation of MATLAB Integration for Jupyter & JupyterLab  
+      3. Configuration of VSCode environment for following modes of access:
+          a. MATLAB in a Browser
+          b. Directly from VSCode, using the MATLAB extension for VSCode
+          c. Using Jupyter Notebooks in VSCode
+          d. Start Codespace in Jupyter
+  See: https://containers.dev/implementors/features/
+  */
+  "name": "Built using Dev Container Features",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/mathworks/devcontainer-features/matlab": {
+      // For more options, See: https://github.com/mathworks/devcontainer-features/tree/main/src/matlab
+      "release": "r2025b",
+      "products": "MATLAB Symbolic_Math_Toolbox Simulink",
+      "installMatlabProxy": "true",
+      "startInDesktop": "true",
+      "installJupyterMatlabProxy": true,
+      "installJupyterLab": true,
+      "installMatlabEngineForPython": true
+    },
+    "ghcr.io/devcontainers/features/python": {
+      "version": "os-provided"
+      // Cannot use the Python feature to install JupyterLab because of:
+      // https://github.com/devcontainers/features/issues/1403
+      // "installJupyterlab": true,
+      // "configureJupyterlabAllowOrigin": "*"
+    }
+  },
+  "onCreateCommand": {
+      "install-dependencies": "sudo apt-get update && sudo apt-get install --no-install-recommends -y git fluxbox"
+  },
+  "portsAttributes": {
+    "8888": {
+      "label": "MATLAB",
+      "onAutoForward": "openPreview"
+    }
+  },
+  "containerEnv": {
+    "MWI_APP_PORT": "8888",
+    "MWI_ENABLE_TOKEN_AUTH": "False",
+    // Configure MATLAB's startup folder
+    "MATLAB_USERWORKDIR": "${containerWorkspaceFolder}",
+    "MATLAB_USE_USERWORK": "1",
+    // Enable embedding the desktop into VSCode's Simple Browser
+    "MWI_CUSTOM_HTTP_HEADERS": "{\"Content-Security-Policy\": \"frame-ancestors *\"}"
+  },
+  // Configure VSCode Extensions
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "MathWorks.language-matlab",
+        "ms-toolsai.jupyter",
+        "ms-python.python"
+      ],
+      "settings": {
+        "MATLAB.signIn": true,
+        // Marks MATLAB Kernel as a trusted source
+        "jupyter.kernels.trusted": [
+          "/usr/share/jupyter/kernels/jupyter_matlab_kernel/kernel.json"
+        ]
+      }
+    }
+  },
+  "hostRequirements": {
+    "cpus": 4
+  },
+  // Need to specify a user to use the startInDesktop feature.
+  "containerUser": "vscode"
+}
