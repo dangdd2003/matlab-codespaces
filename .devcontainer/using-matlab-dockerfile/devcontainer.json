@@ -14,7 +14,7 @@
         "dockerfile": "Dockerfile",
         "args": {
             "MATLAB_RELEASE": "r2025b",
-            "MATLAB_PRODUCT_LIST": "MATLAB Symbolic_Math_Toolbox Simulink"
+            "MATLAB_PRODUCT_LIST": "MATLAB Symbolic_Math_Toolbox Simulink Parallel_Computing_Toolbox Deep_Learning_Toolbox Optimization_Toolbox Signal_Processing_Toolbox Image_Processing_Toolbox Computer_Vision_Toolbox"
         }
     },
     "onCreateCommand": {
